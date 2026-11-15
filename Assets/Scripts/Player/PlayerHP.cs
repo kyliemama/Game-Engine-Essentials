@@ -13,18 +13,13 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player HP: " + currentHealth);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int amount)
     {
-        currentHealth -= damage;
-
-        // Prevent health from going below zero.
-        currentHealth = Mathf.Max(currentHealth, 0);
-
-        Debug.Log("Player HP: " + currentHealth);
-
+        currentHealth -= amount;   // minus damage
         if (currentHealth <= 0)
         {
-            Debug.Log("Player has been defeated!");
+            currentHealth = 0;
+            // Die();
         }
-    }
+    }   
 }

@@ -5,7 +5,7 @@ public class PlayerAttack : MonoBehaviour
 {
     [Header("Attack Settings")]
     public int attackDamage = 10;
-    public float attackRange = 4f;
+    public float attackRange = 6f;
 
     void Update()
     {
