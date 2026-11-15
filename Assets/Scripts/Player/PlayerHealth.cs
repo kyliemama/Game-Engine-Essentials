@@ -15,22 +15,13 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int amount)
     {
-        currentHealth -= damage;
-
-        Debug.Log("Player Health: " + currentHealth);
-
+        currentHealth -= amount;   // minus damage
         if (currentHealth <= 0)
         {
-            Debug.Log("Player has been defeated!");
+            currentHealth = 0;
+            // Die();
         }
-    }
-
-    public void Heal(int amount)
-    {
-        if (amount <= 0) return;
-
-        currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
-    }
+    }   
 }
