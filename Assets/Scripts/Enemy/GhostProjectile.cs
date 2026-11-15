@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class GhostProjectile : MonoBehaviour
 {
-    [Header("Ghost Projectile Settings")]
-    public float speed = 12f;
+    [Header("Projectile Settings")]
+    public float speed = 45f;
     public int damage = 15;
     public float lifeTime = 5f;
 
@@ -44,7 +44,7 @@ public class GhostProjectile : MonoBehaviour
 
         health.TakeDamage(damage);
 
-        Debug.Log("Ghost projectile hit the Player!");
+        Debug.Log("Ghost projectile hit Player! Damage: " + damage);
 
         Destroy(gameObject);
     }

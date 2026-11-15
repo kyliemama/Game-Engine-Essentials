@@ -22,6 +22,11 @@ public class GhostBossAttack : MonoBehaviour
     [Header("Projectile Settings")]
     public float horizontalSpacing = 0.15f;
 
+    [Header("Attack Sound")]
+    public AudioClip attackSound;
+    [Range(0f, 1f)]
+    public float attackSoundVolume = 1f;
+
     private float nextAttackTime;
     private Vector3 originalRotation;
 
@@ -73,6 +78,7 @@ public class GhostBossAttack : MonoBehaviour
         );
     }
 
+
     void ShootProjectile()
     {
         if (Time.time < nextAttackTime)
@@ -84,23 +90,34 @@ public class GhostBossAttack : MonoBehaviour
             return;
         }
 
+        // Set cooldown immediately
+        nextAttackTime = Time.time + attackCooldown;
+
+        // Play attack sound immediately before shooting
+        if (attackSound != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                attackSound,
+                transform.position,
+                attackSoundVolume
+            );
+        }
+
         Vector3 targetPosition = player.position + Vector3.up * 0.5f;
 
-        // Create two horizontal spawn positions.
         Vector3 leftSpawn = firePoint.position -
                             firePoint.right * horizontalSpacing;
 
         Vector3 rightSpawn = firePoint.position +
                              firePoint.right * horizontalSpacing;
 
-        // Both projectiles aim directly at the Player.
+        // Shoot projectiles
         SpawnProjectile(leftSpawn, targetPosition);
         SpawnProjectile(rightSpawn, targetPosition);
 
-        nextAttackTime = Time.time + attackCooldown;
-
-        Debug.Log("Ghost fired two projectiles towards the Player!");
+        Debug.Log("Ghost attack sound and projectiles triggered!");
     }
+
 
     void SpawnProjectile(Vector3 spawnPosition, Vector3 targetPosition)
     {

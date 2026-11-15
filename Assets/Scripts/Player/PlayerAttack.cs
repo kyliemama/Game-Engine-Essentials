@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [Header("Attack Settings")]
     public int attackDamage = 10;
-    public float attackRange = 2f;
+    public float attackRange = 4f;
 
     void Update()
     {
@@ -23,12 +24,30 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider enemy in enemies)
         {
-            EnemyHealth health = enemy.GetComponent<EnemyHealth>();
+            // Damage Pumpkin enemies.
+            EnemyHealth health =
+                enemy.GetComponentInParent<EnemyHealth>();
 
             if (health != null)
             {
                 health.TakeDamage(attackDamage);
             }
+
+            // Damage Ghost Mini-Boss.
+            GhostBossHealth ghostHealth =
+                enemy.GetComponentInParent<GhostBossHealth>();
+
+            if (ghostHealth != null)
+            {
+                ghostHealth.TakeDamage(attackDamage);
+            }
         }
+    }
+
+    // Show attack range in Scene view.
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
