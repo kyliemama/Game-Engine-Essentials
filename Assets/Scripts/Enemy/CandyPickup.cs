@@ -16,6 +16,8 @@ public class CandyPickup : MonoBehaviour
 
     private bool collected = false;
 
+    public bool IsCollected => collected;
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Candy touched by: " + other.name);
@@ -28,7 +30,10 @@ public class CandyPickup : MonoBehaviour
         if (player == null || collected)
             return;
 
-        Collect();
+        // Store the candy on the player instead of collecting it here.
+        PlayerCandyCollector collector = other.GetComponentInParent<PlayerCandyCollector>();
+        if (collector != null)
+            collector.AddCandy(this);
     }
 
     public void Collect()
