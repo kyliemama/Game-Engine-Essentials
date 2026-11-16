@@ -971,7 +971,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8c860d90df234ae49a975798d99f8c64, type: 2}
     - target: {fileID: 919132149155446097, guid: 6c5eb612398e4164ba0b43a26db0050b, type: 3}
       propertyPath: m_Name
-      value: MiniBoss_Ghost 1
+      value: MiniBoss_Ghost
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1073,7 +1073,7 @@ MonoBehaviour:
   attackCooldown: 2
   attackDamage: 15
   rotationSpeed: 180
-  modelYawOffset: 90
+  modelYawOffset: 270
   horizontalSpacing: 0.15
   attackSound: {fileID: 8300000, guid: 2a36b128e29a6e54da767fdcae89588d, type: 3}
   attackSoundVolume: 1

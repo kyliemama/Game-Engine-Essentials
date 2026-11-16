@@ -29,6 +29,11 @@ public class BatAI : MonoBehaviour
     public float forwardOffset = 0.25f;
     public float spawnHeight = 0f;
 
+    [Header("Attack Sound")]
+    public AudioClip attackSound;
+    [Range(0f, 1f)]
+    public float attackSoundVolume = 0.7f;
+
     private float nextAttackTime;
     private float randomOffset;
 
@@ -123,6 +128,22 @@ public class BatAI : MonoBehaviour
         }
 
         nextAttackTime = Time.time + attackCooldown;
+
+        // Play bat attack sound.
+        if (attackSound != null)
+        {
+            Vector3 soundPosition = Camera.main != null
+                ? Camera.main.transform.position
+                : firePoint.position;
+
+            AudioSource.PlayClipAtPoint(
+                attackSound,
+                soundPosition,
+                attackSoundVolume
+            );
+
+            Debug.Log("Bat attack sound played!");
+        }
 
         Vector3 targetPosition =
             player.position + Vector3.up * 0.5f;
