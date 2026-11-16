@@ -5,7 +5,7 @@ using UnityEngine;
 public class TestingAttack : MonoBehaviour
 {
     [Header("Attack Settings")]
-    public int attackDamage = 10;
+    public int attackDamage = 15;
     public float attackRange = 6f;
 
     [Header("Attack Position")]

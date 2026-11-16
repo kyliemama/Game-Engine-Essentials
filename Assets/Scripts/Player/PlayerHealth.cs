@@ -5,7 +5,7 @@ using UnityEngine;
 // PlayerHealthUI shows it, and reaching 0 HP loses the game.
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
-    public int maxHealth = 100;
+    public int maxHealth = 1000;
     public bool logDamage = true;
 
     private int currentHealth;

@@ -79077,8 +79077,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7616432312288051350, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2086809546}
   m_SourcePrefab: {fileID: 100100000, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
+--- !u!1 &2086809545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7616432312288051350, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
+  m_PrefabInstance: {fileID: 2086809544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2086809546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086809545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864469727e42652448b7e6b9671dc8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBringAlong
 --- !u!1 &2089317711
 GameObject:
   m_ObjectHideFlags: 0
