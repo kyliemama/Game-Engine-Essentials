@@ -5,7 +5,7 @@ public class TreeProjectile : MonoBehaviour
 {
     [Header("Projectile Settings")]
     public float speed = 12f;
-    public int damage = 10;
+    public int damage = 20;
     public float lifeTime = 5f;
 
     private Transform player;
@@ -26,19 +26,21 @@ public class TreeProjectile : MonoBehaviour
         if (player == null || hasHit)
             return;
 
-        Vector3 targetPosition = player.position + Vector3.up * 0.5f;
+        Vector3 targetPosition =
+            player.position + Vector3.up * 0.5f;
 
         Vector3 direction =
             (targetPosition - transform.position).normalized;
 
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position +=
+            direction * speed * Time.deltaTime;
 
         if (direction.sqrMagnitude > 0.001f)
         {
-            transform.rotation = Quaternion.LookRotation(direction);
+            transform.rotation =
+                Quaternion.LookRotation(direction);
         }
     }
-
 
     void OnTriggerEnter(Collider other)
     {
@@ -57,7 +59,7 @@ public class TreeProjectile : MonoBehaviour
             Debug.Log("Tree Boss hit Player!");
             Debug.Log("Player received damage: " + damage);
             Debug.Log("Remaining Player HP: " +
-                      playerHealth.currentHealth);
+                      playerHealth.CurrentHealth);
 
             Destroy(gameObject);
         }

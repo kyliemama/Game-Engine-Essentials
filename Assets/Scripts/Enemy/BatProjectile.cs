@@ -79,17 +79,9 @@ public class BatProjectile : MonoBehaviour
             Debug.Log("Bat hit Player!");
             Debug.Log("Player received damage: " + damage);
             Debug.Log("Remaining Player HP: " +
-                      playerHealth.currentHealth);
+                      playerHealth.CurrentHealth);
 
             Destroy(gameObject);
         }
-
-        Debug.Log(
-            "BAT HIT PLAYER! Remaining HP: " +
-            health.CurrentHealth
-        );
-
-        Destroy(gameObject);
-
     }
 }

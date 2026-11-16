@@ -5,16 +5,16 @@ public class BatHealth : MonoBehaviour
 {
     [Header("Bat Health")]
     public int maxHealth = 50;
-    private int currentHealth;
 
+    private int currentHealth;
     private bool isDead = false;
 
     public int CurrentHealth => currentHealth;
+    public int MaxHealth => maxHealth;
 
     void Start()
     {
         currentHealth = maxHealth;
-
         Debug.Log("Bat HP: " + currentHealth);
     }
 

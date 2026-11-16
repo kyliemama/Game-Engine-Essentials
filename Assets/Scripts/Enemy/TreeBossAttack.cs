@@ -11,6 +11,7 @@ public class TreeBossAttack : MonoBehaviour
     public Transform firePoint;
 
     [Header("Attack Settings")]
+    public float attackRange = 12f;
     public float attackCooldown = 1.5f;
     public int attackDamage = 20;
 
@@ -27,7 +28,9 @@ public class TreeBossAttack : MonoBehaviour
                 GameObject.FindGameObjectWithTag("Player");
 
             if (playerObject != null)
+            {
                 player = playerObject.transform;
+            }
         }
     }
 
@@ -36,7 +39,16 @@ public class TreeBossAttack : MonoBehaviour
         if (player == null)
             return;
 
-        ShootProjectile();
+        float distance = Vector3.Distance(
+            transform.position,
+            player.position
+        );
+
+        // Only attack when Player is within range.
+        if (distance <= attackRange)
+        {
+            ShootProjectile();
+        }
     }
 
     void ShootProjectile()
@@ -73,7 +85,7 @@ public class TreeBossAttack : MonoBehaviour
             movement.speed = projectileSpeed;
             movement.SetTarget(player);
 
-            Debug.Log("Tree Boss fired a fireball!");
+            Debug.Log("Tree Boss attacked Player!");
         }
         else
         {
