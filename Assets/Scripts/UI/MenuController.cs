@@ -36,6 +36,7 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
+        GameManager.Get().ResetRun();
         SceneManager.LoadScene(gameSceneName);
     }
 

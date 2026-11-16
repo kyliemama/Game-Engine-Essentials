@@ -15,6 +15,7 @@ public static class GameEnding
 
         losing = true;
         LosePending = true;
+        GameManager.Get().ResetRun();
         SceneManager.LoadScene("MainMenu");
     }
 
