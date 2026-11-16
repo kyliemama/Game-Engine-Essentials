@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TeleportLevels : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class TeleportLevels : MonoBehaviour
     [SerializeField] private Transform hatch2To3Destination;
     [SerializeField] private GameObject floor3Group;
     [SerializeField] private Vector3 landingOffset = new Vector3(0f, 1.2f, -1.2f);
-    [SerializeField] private float teleportCooldown = 1.5f;
+    [SerializeField] private GameObject miniboss;
+    [SerializeField] private GameObject finalBoss;
 
     private int currentFloor = 1;
     private float lastTeleportTime = -10f;
@@ -17,10 +19,10 @@ public class TeleportLevels : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        if (Time.time - lastTeleportTime < teleportCooldown) return;
 
         if (currentFloor == 1 && hatch1To2Destination != null)
         {
+            if (!AreEnemiesDefeated(miniboss)) return;
             lastTeleportTime = Time.time;
             currentFloor = 2;
 
@@ -32,6 +34,7 @@ public class TeleportLevels : MonoBehaviour
         }
         else if (currentFloor == 2 && hatch2To3Destination != null)
         {
+            if (!AreEnemiesDefeated(finalBoss)) return;
             lastTeleportTime = Time.time;
             currentFloor = 3;
 
@@ -41,6 +44,12 @@ public class TeleportLevels : MonoBehaviour
             MovePlayer(other.transform, hatch2To3Destination);
         }
     }
+
+    private bool AreEnemiesDefeated(GameObject Enemies)
+    {
+        return Enemies == null || !Enemies.activeInHierarchy;
+    }
+
 
     private void MovePlayer(Transform player, Transform hatchTarget)
     {

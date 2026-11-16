@@ -8466,7 +8466,8 @@ MonoBehaviour:
   hatch2To3Destination: {fileID: 1091295132}
   floor3Group: {fileID: 1395595243}
   landingOffset: {x: 0, y: 1.2, z: -1.2}
-  teleportCooldown: 1.5
+  miniboss: {fileID: 1634423353}
+  finalBoss: {fileID: 1614713086}
 --- !u!1 &295452121
 GameObject:
   m_ObjectHideFlags: 0
@@ -64455,7 +64456,7 @@ MonoBehaviour:
   finalboss: {fileID: 1614713086}
   chestAnimator: {fileID: 1655816778}
   lidOpenDelay: 0.4
-  candiesParent: {fileID: 3874517414618139489}
+  candiesParent: {fileID: 385500105}
   upwardForce: 6
   outwardForce: 4
   spinForce: 8
