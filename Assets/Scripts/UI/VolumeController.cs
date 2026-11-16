@@ -83,13 +83,6 @@ public class VolumeController : MonoBehaviour
     {
         if (AudioManager.instance != null) AudioManager.instance.PlayClick();
     }
-
-    // Plays a clip you drag into a button's On Click argument slot.
-    public void PlaySound(AudioClip clip)
-    {
-        if (AudioManager.instance != null) AudioManager.instance.PlayClip(clip);
-    }
-
     private void ToggleMute(Slider slider, ref float savedVolume)
     {
         if (slider == null) return;
