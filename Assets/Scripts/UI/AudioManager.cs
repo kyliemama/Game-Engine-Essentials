@@ -3,24 +3,22 @@ using UnityEngine;
 [System.Serializable]
 public struct SoundEffect
 {
-    public string name;    // Name you call from code, such as Walk, Attack or Hit.
+    public string name;    
     public AudioClip clip;
 }
 
-// Music and sound effects for the whole game. Keeps playing across scenes.
-// Put on a root GameObject named AudioManager. Put the audio sources on child objects.
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
     [Header("Sources")]
-    [SerializeField] AudioSource musicSource;  // Loop on, Play On Awake off. Output: MainMixer > Music.
-    [SerializeField] AudioSource sfxSource;    // Play On Awake off. Output: MainMixer > SFX. One-shots.
-    [SerializeField] AudioSource loopSource;   // Loop on, Play On Awake off. Output: MainMixer > SFX. Walking, etc.
+    [SerializeField] AudioSource musicSource; 
+    [SerializeField] AudioSource sfxSource;   
+    [SerializeField] AudioSource loopSource;   
 
     [Header("Music clips")]
-    [SerializeField] AudioClip normalMusic;    // Plays most of the time.
-    [SerializeField] AudioClip enemyMusic;     // Plays while an enemy sees the player.
+    [SerializeField] AudioClip normalMusic;    
+    [SerializeField] AudioClip enemyMusic;    
 
     [Header("Sound effect clips")]
     [SerializeField] SoundEffect[] soundEffects;
@@ -39,7 +37,6 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        // Only the copy that survived starts the music.
         if (instance != this) return;
 
         if (musicSource != null && normalMusic != null && !musicSource.isPlaying)
@@ -59,7 +56,7 @@ public class AudioManager : MonoBehaviour
         SwapMusic(enemyMusic);
     }
 
-    // Starts or stops the background music.
+    // mute and unmute
     public void ToggleMusic()
     {
         if (musicSource == null) return;
@@ -70,19 +67,19 @@ public class AudioManager : MonoBehaviour
             musicSource.Play();
     }
 
-    // Plays a named sound effect once, such as "Attack".
+    // play sound with name
     public void PlaySFX(string soundName)
     {
         PlayClip(FindSound(soundName));
     }
 
-    // Button click sound. Uses the Sound Effect Clips entry named Click.
+    // play click
     public void PlayClick()
     {
         PlaySFX("Click");
     }
 
-    // Plays a clip once. Used by buttons that pass a clip in the Inspector.
+    // can choose what clip to play
     public void PlayClip(AudioClip clip)
     {
         if (sfxSource != null && clip != null)
@@ -91,7 +88,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Loops a named sound, such as "Walk". Pass an empty name to stop it.
     public void SetLoop(string soundName)
     {
         if (loopSource == null) return;
@@ -121,7 +117,8 @@ public class AudioManager : MonoBehaviour
         return null;
     }
 
-    private void SwapMusic(AudioClip clip)
+    //battle music and normal music
+    private void SwapMusic(AudioClip clip) 
     {
         if (musicSource == null || clip == null || musicSource.clip == clip) return;
 
