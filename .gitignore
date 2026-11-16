@@ -94,3 +94,6 @@ ServerData/
 
 # Auto-generated cache
 [Aa]ssets/[Ss]ceneDependencyCache*
+
+# Large project archive, not for git
+ProjectSettings.zip

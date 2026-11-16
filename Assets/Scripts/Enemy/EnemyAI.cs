@@ -287,7 +287,7 @@ public class EnemyAI : MonoBehaviour
 
         if (audio != null && audio.clip != null)
         {
-            AudioSource.PlayClipAtPoint(audio.clip, transform.position, audio.volume);
+            if (AudioManager.instance != null) AudioManager.instance.PlayClip(audio.clip, audio.volume);
         }
 
         FireballProjectile projectile = fireball.GetComponent<FireballProjectile>();

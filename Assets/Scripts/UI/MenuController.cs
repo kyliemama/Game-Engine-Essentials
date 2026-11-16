@@ -16,6 +16,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private TMP_Text endingText;      // The words on the ending panel.
     [SerializeField] private Sprite losePicture;       // Picture for a loss.
     [SerializeField, TextArea] private string loseText = "You were defeated.";
+    [Tooltip("Win ending: the picture and text already set on the ending panel are kept. Leave empty to keep the panel's text.")]
+    [SerializeField, TextArea] private string winText = "";
 
     [Header("Scene")]
     [SerializeField] private string gameSceneName = "Enemy";
@@ -31,6 +33,11 @@ public class MenuController : MonoBehaviour
         if (GameEnding.LosePending)
         {
             ShowEnding(losePicture, loseText);
+        }
+        else if (GameEnding.WinPending)
+        {
+            // Null picture keeps the panel's own (winning) picture.
+            ShowEnding(null, string.IsNullOrEmpty(winText) ? null : winText);
         }
     }
 
@@ -77,7 +84,7 @@ public class MenuController : MonoBehaviour
         SetPanel(endingPanel, true);
 
         if (endingPicture != null && picture != null) endingPicture.sprite = picture;
-        if (endingText != null) endingText.text = text;
+        if (endingText != null && text != null) endingText.text = text;
 
         GameEnding.ClearPending();
     }

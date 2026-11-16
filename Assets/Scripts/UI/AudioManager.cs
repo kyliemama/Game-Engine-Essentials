@@ -88,6 +88,15 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // Plays a clip on the SFX source at the given volume (0 to 1), so the SFX slider applies.
+    public void PlayClip(AudioClip clip, float volume)
+    {
+        if (sfxSource != null && clip != null)
+        {
+            sfxSource.PlayOneShot(clip, volume);
+        }
+    }
+
     public void SetLoop(string soundName)
     {
         if (loopSource == null) return;

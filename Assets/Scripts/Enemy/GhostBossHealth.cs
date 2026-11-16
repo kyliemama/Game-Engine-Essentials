@@ -115,11 +115,7 @@ public class GhostBossHealth : MonoBehaviour, IDamageable
 
             if (lollipopSpawnSound != null)
             {
-                AudioSource.PlayClipAtPoint(
-                    lollipopSpawnSound,
-                    spawnPosition,
-                    lollipopSoundVolume
-                );
+                if (AudioManager.instance != null) AudioManager.instance.PlayClip(lollipopSpawnSound, lollipopSoundVolume);
             }
 
             LollipopKeyPickup pickup =
