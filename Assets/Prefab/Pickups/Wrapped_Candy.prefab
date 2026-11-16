@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3807796861521328489}
   - component: {fileID: 3857434188102570052}
   - component: {fileID: 3060574232935232539}
+  - component: {fileID: 6907932881827138541}
   m_Layer: 0
   m_Name: Wrapped_Candy
   m_TagString: Untagged
@@ -142,6 +143,25 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.3
   m_Center: {x: 0, y: 0.33286977, z: 0}
+--- !u!114 &6907932881827138541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5043313453883304894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208d9ea8f665bd348b6de98814f1b782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CandyDrop
+  hpCandyPrefab: {fileID: 5043313453883304894}
+  minCandy: 2
+  maxCandy: 3
+  throwForce: 1.5
+  upwardForce: 1.2
+  candyPopSound: {fileID: 0}
+  popVolume: 0.7
 --- !u!1 &7886307962045086100
 GameObject:
   m_ObjectHideFlags: 0
