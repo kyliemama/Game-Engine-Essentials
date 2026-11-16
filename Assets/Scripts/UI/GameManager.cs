@@ -38,6 +38,14 @@ public class GameManager : MonoBehaviour
         return instance;
     }
 
+    // Clears the candy count and the key. Call this when a new run starts or ends.
+    public void ResetRun()
+    {
+        CandyCount = 0;
+        HasKey = false;
+        OnChanged?.Invoke();
+    }
+
     public void AddCandy()
     {
         CandyCount++;

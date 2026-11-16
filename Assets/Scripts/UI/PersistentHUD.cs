@@ -80,6 +80,7 @@ public class PersistentHUD : MonoBehaviour
     public void LeaveGame()
     {
         if (settingsPanel != null) settingsPanel.SetActive(false);
+        GameManager.Get().ResetRun();
         SceneManager.LoadScene("MainMenu");
     }
 
