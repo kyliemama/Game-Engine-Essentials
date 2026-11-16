@@ -9272,7 +9272,7 @@ MonoBehaviour:
   level1Enemy: {fileID: 1634423353}
   hatch1To2: {fileID: 1627901522}
   level1Staircase: {fileID: 294904766}
-  level1Position: 2.62
+  level1Position: 2.23
   dropSpeed: 8
   level2Enemy: {fileID: 1614713086}
   hatch2To3: {fileID: 1091295128}

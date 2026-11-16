@@ -37,7 +37,7 @@ public class TeleportLevels : MonoBehaviour
             if (staircaseElevator != null) staircaseElevator.CloseHatch1To2();
 
             MovePlayer(playerInRange, hatch1To2Destination);
-            playerInRange = null; // Clear reference since player teleported away
+            playerInRange = null;
         }
         else if (currentFloor == 2 && hatch2To3Destination != null)
         {
@@ -46,11 +46,13 @@ public class TeleportLevels : MonoBehaviour
 
             if (floor3Group != null) floor3Group.SetActive(true);
             if (floor2Group != null) floor2Group.SetActive(false);
+            if (staircaseElevator != null) staircaseElevator.CloseHatch2To3(); // <-- Add this line
 
             MovePlayer(playerInRange, hatch2To3Destination);
-            playerInRange = null; // Clear reference since player teleported away
+            playerInRange = null;
         }
     }
+
 
     private bool AreEnemiesDefeated(GameObject Enemies)
     {

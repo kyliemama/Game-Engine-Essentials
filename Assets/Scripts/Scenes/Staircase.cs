@@ -77,6 +77,14 @@ public class Staircase : MonoBehaviour
             hatch1To2.SetActive(true);
         }
     }
+    public void CloseHatch2To3()
+    {
+        if (hatch2To3 != null)
+        {
+            hatch2To3.SetActive(true);
+        }
+    }
+
 
     bool IsDefeated(GameObject target)
     {
