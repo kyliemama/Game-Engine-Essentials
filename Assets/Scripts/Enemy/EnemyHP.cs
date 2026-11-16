@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [Header("Enemy Health")]
     public int maxHealth = 50;
     private int currentHealth;
     private bool isDead = false;
@@ -12,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        Debug.Log(gameObject.name + " HP: " + currentHealth);
     }
 
     public void TakeDamage(int damage)
@@ -20,8 +22,9 @@ public class EnemyHealth : MonoBehaviour
             return;
 
         currentHealth -= damage;
+        currentHealth = Mathf.Max(currentHealth, 0);
 
-        Debug.Log("Pumpkin Health: " + currentHealth);
+        Debug.Log(gameObject.name + " HP: " + currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -36,18 +39,13 @@ public class EnemyHealth : MonoBehaviour
 
         isDead = true;
 
-        Debug.Log("Pumpkin has been defeated!");
+        Debug.Log(gameObject.name + " has been defeated!");
 
-        // Drop candies before destroying the Pumpkin
         CandyDrop candyDrop = GetComponent<CandyDrop>();
 
         if (candyDrop != null)
         {
             candyDrop.DropCandies();
-        }
-        else
-        {
-            Debug.LogWarning("CandyDrop component is missing!");
         }
 
         Destroy(gameObject);

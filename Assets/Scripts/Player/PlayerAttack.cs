@@ -22,32 +22,54 @@ public class PlayerAttack : MonoBehaviour
             attackRange
         );
 
+        bool hitEnemy = false;
+
         foreach (Collider enemy in enemies)
         {
-            // Damage Pumpkin enemies.
-            EnemyHealth health =
-                enemy.GetComponentInParent<EnemyHealth>();
+            // Bat damage
+            BatHealth batHealth =
+                enemy.GetComponentInParent<BatHealth>();
 
-            if (health != null)
+            if (batHealth != null)
             {
-                health.TakeDamage(attackDamage);
+                batHealth.TakeDamage(attackDamage);
+                hitEnemy = true;
             }
 
-            // Damage Ghost Mini-Boss.
+            // Pumpkin and Tree Boss damage
+            EnemyHealth enemyHealth =
+                enemy.GetComponentInParent<EnemyHealth>();
+
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(attackDamage);
+                hitEnemy = true;
+            }
+
+            // Ghost Mini-Boss damage
             GhostBossHealth ghostHealth =
                 enemy.GetComponentInParent<GhostBossHealth>();
 
             if (ghostHealth != null)
             {
                 ghostHealth.TakeDamage(attackDamage);
+                hitEnemy = true;
             }
         }
+
+        if (hitEnemy)
+            Debug.Log("Player successfully attacked an enemy!");
+        else
+            Debug.Log("No enemy in attack range!");
     }
 
-    // Show attack range in Scene view.
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.DrawWireSphere(
+            transform.position,
+            attackRange
+        );
     }
 }

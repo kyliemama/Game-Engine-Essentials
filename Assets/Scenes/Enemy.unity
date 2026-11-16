@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &8223794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8223795}
+  m_Layer: 0
+  m_Name: TreeFirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8223795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223794}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.375, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1968785657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &112601319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -755,8 +786,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6078220454568310488, guid: 8c0c424505014eb4a9674a764984bd2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8223795}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6850535647522778210, guid: 8c0c424505014eb4a9674a764984bd2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1968785658}
+    - targetCorrespondingSourceObject: {fileID: 6850535647522778210, guid: 8c0c424505014eb4a9674a764984bd2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1968785659}
   m_SourcePrefab: {fileID: 100100000, guid: 8c0c424505014eb4a9674a764984bd2a, type: 3}
 --- !u!4 &795030938 stripped
 Transform:
@@ -953,6 +993,10 @@ PrefabInstance:
     - target: {fileID: 8199777940358053914, guid: 2427e15cc9dbc7341b5e7c5ad24d130c, type: 3}
       propertyPath: m_Name
       value: MiniBoss_Ghost 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199777940358053914, guid: 2427e15cc9dbc7341b5e7c5ad24d130c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8827238042894867104, guid: 2427e15cc9dbc7341b5e7c5ad24d130c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1496,6 +1540,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1968785656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6850535647522778210, guid: 8c0c424505014eb4a9674a764984bd2a, type: 3}
+  m_PrefabInstance: {fileID: 753972429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1968785657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6078220454568310488, guid: 8c0c424505014eb4a9674a764984bd2a, type: 3}
+  m_PrefabInstance: {fileID: 753972429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1968785658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968785656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb9f736e7aa29443b8625d421b8eb68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TreeBossIdle
+  swayAmount: 2
+  swaySpeed: 1
+  bobAmount: 0.05
+  bobSpeed: 1.5
+--- !u!114 &1968785659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968785656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc5e63090fbb7714585bc070723ab320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TreeBossAttack
+  player: {fileID: 1379431072}
+  projectilePrefab: {fileID: 8679601285337679599, guid: 48a0bd2442a083044b13b44cda00af96, type: 3}
+  firePoint: {fileID: 8223795}
+  attackCooldown: 1.5
+  attackDamage: 15
+  projectileSpeed: 12
 --- !u!1001 &1106618468347584783
 PrefabInstance:
   m_ObjectHideFlags: 0
