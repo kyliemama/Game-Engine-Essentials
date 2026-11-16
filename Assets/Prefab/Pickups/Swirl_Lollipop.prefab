@@ -174,3 +174,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0854fbe942914c54fbc77189c3e99044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LollipopKeyPickup
+  keySprite: {fileID: -2593660142199662922, guid: fb211702eb3d88a4e9b2334d09ee5e52, type: 3}
