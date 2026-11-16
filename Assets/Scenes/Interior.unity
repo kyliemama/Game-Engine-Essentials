@@ -64499,6 +64499,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 3
   m_Size: {x: 0.8026094, y: 0.48060656, z: 0.59685326}
   m_Center: {x: 0.0000004768372, y: 0.23838055, z: -0.0005979538}
 --- !u!1 &2140815153
