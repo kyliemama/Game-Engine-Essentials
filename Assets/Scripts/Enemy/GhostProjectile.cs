@@ -9,6 +9,8 @@ public class GhostProjectile : MonoBehaviour
     public float lifeTime = 5f;
 
     private Vector3 direction;
+    [HideInInspector] public Transform owner;   // the enemy that fired this
+
     private bool hasHit = false;
 
     void Start()
@@ -38,7 +40,15 @@ public class GhostProjectile : MonoBehaviour
             other.GetComponentInParent<PlayerHealth>();
 
         if (health == null)
+        {
+            // Hit a wall, floor or ceiling (anything solid that isn't the shooter): stop here.
+            if (!other.isTrigger && !(owner && other.transform.IsChildOf(owner.root)))
+            {
+                hasHit = true;
+                Destroy(gameObject);
+            }
             return;
+        }
 
         hasHit = true;
 

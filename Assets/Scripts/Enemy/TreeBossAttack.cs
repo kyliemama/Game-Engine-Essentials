@@ -18,6 +18,12 @@ public class TreeBossAttack : MonoBehaviour
     [Header("Projectile Settings")]
     public float projectileSpeed = 12f;
 
+    [Header("Line of Sight")]
+    [Tooltip("Only attack when nothing solid (walls, floors) is between the boss and the Player.")]
+    public bool requireLineOfSight = true;
+    [Tooltip("Ignore the Player if they are more than this far above or below (on another floor).")]
+    public float maxHeightDifference = 3f;
+
     [Header("Attack Sound")]
     public AudioClip attackSound;
     [Range(0f, 1f)]
@@ -46,8 +52,7 @@ public class TreeBossAttack : MonoBehaviour
     void Update()
     {
         // Find the Player if it isn't assigned (or was destroyed / replaced).
-        if (player == null)
-            player = PlayerLocator.Find();
+        player = PlayerLocator.Resolve(player);
 
         if (player == null)
             return;
@@ -57,7 +62,11 @@ public class TreeBossAttack : MonoBehaviour
             player.position
         );
 
-        if (distance <= attackRange)
+        Vector3 eye = firePoint ? firePoint.position : transform.position + Vector3.up;
+
+        if (distance <= attackRange &&
+            (!requireLineOfSight ||
+             PlayerLocator.HasLineOfSight(eye, player, transform, maxHeightDifference)))
         {
             ShootProjectile();
         }
@@ -115,6 +124,7 @@ public class TreeBossAttack : MonoBehaviour
         {
             movement.damage = attackDamage;
             movement.speed = projectileSpeed;
+            movement.owner = transform;
             movement.SetTarget(player);
 
             Debug.Log("Tree Boss attacked Player!");

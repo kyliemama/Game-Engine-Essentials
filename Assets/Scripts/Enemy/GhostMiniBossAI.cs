@@ -39,8 +39,7 @@ public class GhostMiniBossAI : MonoBehaviour
     void Update()
     {
         // Find the Player if it isn't assigned (or was destroyed / replaced).
-        if (player == null)
-            player = PlayerLocator.Find();
+        player = PlayerLocator.Resolve(player);
 
         float distance = player != null
             ? Vector3.Distance(transform.position, player.position)

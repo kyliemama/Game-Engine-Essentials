@@ -22,6 +22,12 @@ public class GhostBossAttack : MonoBehaviour
     [Header("Projectile Settings")]
     public float horizontalSpacing = 0.15f;
 
+    [Header("Line of Sight")]
+    [Tooltip("Only attack when nothing solid (walls, floors) is between the ghost and the Player.")]
+    public bool requireLineOfSight = true;
+    [Tooltip("Ignore the Player if they are more than this far above or below (on another floor).")]
+    public float maxHeightDifference = 3f;
+
     [Header("Attack Sound")]
     public AudioClip attackSound;
     [Range(0f, 1f)]
@@ -33,13 +39,28 @@ public class GhostBossAttack : MonoBehaviour
     void Start()
     {
         originalRotation = transform.eulerAngles;
+
+        // Fire Point not assigned: use a child with "FirePoint" in its name, otherwise the ghost itself.
+        if (firePoint == null)
+            firePoint = FindChildByName(transform, "FirePoint");
+        if (firePoint == null)
+        {
+            firePoint = transform;
+            Debug.LogWarning("GhostBossAttack: Fire Point is not assigned, shooting from the ghost's centre.", this);
+        }
+    }
+
+    static Transform FindChildByName(Transform root, string part)
+    {
+        foreach (Transform t in root.GetComponentsInChildren<Transform>(true))
+            if (t != root && t.name.Contains(part)) return t;
+        return null;
     }
 
     void Update()
     {
         // Find the Player if it isn't assigned (or was destroyed / replaced).
-        if (player == null)
-            player = PlayerLocator.Find();
+        player = PlayerLocator.Resolve(player);
 
         if (player == null)
             return;
@@ -49,7 +70,9 @@ public class GhostBossAttack : MonoBehaviour
             player.position
         );
 
-        if (distanceToPlayer <= attackRange)
+        if (distanceToPlayer <= attackRange &&
+            (!requireLineOfSight ||
+             PlayerLocator.HasLineOfSight(firePoint.position, player, transform, maxHeightDifference)))
         {
             RotateTowardsPlayer();
             ShootProjectile();
@@ -141,6 +164,7 @@ public class GhostBossAttack : MonoBehaviour
         if (movement != null)
         {
             movement.damage = attackDamage;
+            movement.owner = transform;
             movement.SetDirection(direction);
         }
         else

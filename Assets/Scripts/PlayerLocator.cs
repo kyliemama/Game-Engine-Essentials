@@ -11,6 +11,41 @@ public static class PlayerLocator
     static float nextSearchTime;
     static bool warnedNoHealth;
 
+    /// <summary>
+    /// Returns 'current' if it is a real Player in a loaded scene, otherwise finds the Player.
+    /// Fixes Inspector fields that were dragged from the Player prefab asset (Project window)
+    /// instead of the Player in the scene - those point at the prefab file, never move, and
+    /// make enemies aim at the wrong spot.
+    /// </summary>
+    public static Transform Resolve(Transform current)
+    {
+        if (current && current.gameObject.scene.IsValid()) return current;
+        return Find();
+    }
+
+    /// <summary>
+    /// True if 'from' can see the Player: not too far above/below (different floor) and no wall or
+    /// floor in between. Colliders belonging to 'self' or to the Player are ignored.
+    /// </summary>
+    public static bool HasLineOfSight(Vector3 from, Transform player, Transform self, float maxHeightDifference)
+    {
+        if (!player) return false;
+
+        Vector3 to = player.position + Vector3.up * 1f;   // aim at the chest, not the feet
+        if (Mathf.Abs(to.y - from.y) > maxHeightDifference) return false;
+
+        Vector3 dir = to - from;
+        RaycastHit[] hits = Physics.RaycastAll(from, dir.normalized, dir.magnitude, ~0, QueryTriggerInteraction.Ignore);
+        foreach (RaycastHit h in hits)
+        {
+            Transform t = h.collider.transform;
+            if (self && t.IsChildOf(self.root)) continue;
+            if (t.IsChildOf(player.root)) continue;
+            return false;   // a wall, floor or ceiling is in the way
+        }
+        return true;
+    }
+
     public static Transform Find()
     {
         if (cached) return cached;

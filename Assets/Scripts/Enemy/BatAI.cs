@@ -70,8 +70,7 @@ public class BatAI : MonoBehaviour
     void Update()
     {
         // Find the Player if it isn't assigned (or was destroyed / replaced).
-        if (player == null)
-            player = PlayerLocator.Find();
+        player = PlayerLocator.Resolve(player);
 
         if (player == null)
         {
@@ -265,4 +264,4 @@ public class BatAI : MonoBehaviour
             Destroy(projectile);
         }
     }
-}
+}

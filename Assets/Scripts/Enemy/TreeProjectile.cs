@@ -9,6 +9,8 @@ public class TreeProjectile : MonoBehaviour
     public float lifeTime = 5f;
 
     private Transform player;
+    [HideInInspector] public Transform owner;   // the enemy that fired this
+
     private bool hasHit;
 
     void Start()
@@ -61,6 +63,14 @@ public class TreeProjectile : MonoBehaviour
             Debug.Log("Remaining Player HP: " +
                       playerHealth.CurrentHealth);
 
+            Destroy(gameObject);
+            return;
+        }
+
+        // Hit a wall, floor or ceiling (anything solid that isn't the shooter): stop here.
+        if (!other.isTrigger && !(owner && other.transform.IsChildOf(owner.root)))
+        {
+            hasHit = true;
             Destroy(gameObject);
         }
     }

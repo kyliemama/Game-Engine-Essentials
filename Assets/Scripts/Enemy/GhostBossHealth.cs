@@ -28,6 +28,22 @@ public class GhostBossHealth : MonoBehaviour, IDamageable
 
     private bool isDead = false;
 
+    void Awake()
+    {
+        // The MiniBoss_Ghost prefab has a second GhostBossHealth on its health bar canvas. That copy
+        // never gets hit, so the bar never moved. Hand its bar to the real one (on the ghost) and remove it.
+        GhostBossHealth owner = transform.parent
+            ? transform.parent.GetComponentInParent<GhostBossHealth>()
+            : null;
+
+        if (owner != null)
+        {
+            if (owner.healthFill == null) owner.healthFill = healthFill;
+            if (owner.healthText == null) owner.healthText = healthText;
+            Destroy(this);
+        }
+    }
+
     void Start()
     {
         currentHealth = maxHealth;
