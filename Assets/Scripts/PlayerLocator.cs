@@ -46,6 +46,33 @@ public static class PlayerLocator
         return true;
     }
 
+    /// <summary>
+    /// Makes sure the Player has PlayerHealth (enemies damage it) and PlayerCandyCollector (picks up
+    /// and eats candy). The Player prefab doesn't have them, so they're added at runtime if missing.
+    /// </summary>
+    public static void EnsurePlayerComponents(Transform player)
+    {
+        if (!player) return;
+
+        GameObject root = player.gameObject;
+        CharacterController cc = player.GetComponentInParent<CharacterController>();
+        if (cc) root = cc.gameObject;
+
+        if (!root.GetComponentInParent<PlayerHealth>() && !root.GetComponentInChildren<PlayerHealth>())
+        {
+            root.AddComponent<PlayerHealth>();
+            if (!warnedNoHealth)
+            {
+                warnedNoHealth = true;
+                Debug.LogWarning("PlayerLocator: the Player had no PlayerHealth, so one was added at runtime. " +
+                                 "Add PlayerHealth to the Player prefab to set its Max Health.", root);
+            }
+        }
+
+        if (!root.GetComponentInParent<PlayerCandyCollector>() && !root.GetComponentInChildren<PlayerCandyCollector>())
+            root.AddComponent<PlayerCandyCollector>();
+    }
+
     public static Transform Find()
     {
         if (cached) return cached;
@@ -69,13 +96,7 @@ public static class PlayerLocator
             if (ph) cached = ph.transform;
         }
 
-        if (cached && !warnedNoHealth && !cached.GetComponentInParent<PlayerHealth>() &&
-            !cached.GetComponentInChildren<PlayerHealth>())
-        {
-            warnedNoHealth = true;
-            Debug.LogWarning("PlayerLocator: the Player has no PlayerHealth component, so enemy projectiles " +
-                             "can't damage it. Add PlayerHealth to the Player.", cached);
-        }
+        if (cached) EnsurePlayerComponents(cached);
 
         return cached;
     }
