@@ -12,13 +12,6 @@ public class PlayerCandyCollector : MonoBehaviour
     private void Start()
     {
         health = GetComponent<PlayerHealth>();
-
-        // Eating candy heals PlayerHealth, so make sure the Player has one.
-        if (health == null)
-        {
-            PlayerLocator.EnsurePlayerComponents(transform);
-            health = GetComponentInParent<PlayerHealth>();
-        }
     }
 
     private void Update()
