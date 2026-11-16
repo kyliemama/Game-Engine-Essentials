@@ -80,6 +80,9 @@ public class Explosion : MonoBehaviour
 
             yield return new WaitForSeconds(0.02f);
         }
+
+        // The chest is open: the player wins.
+        GameEnding.WinGame();
     }
 
     private void OnTriggerEnter(Collider other)

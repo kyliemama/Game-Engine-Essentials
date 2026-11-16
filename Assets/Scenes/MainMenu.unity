@@ -2556,7 +2556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Won!
+  m_text: Thanks to you, everyone can have a nice Halloween!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71ad865075cdd0041992e6b5f6eb9de4, type: 2}
   m_sharedMaterial: {fileID: -7310353039572881785, guid: 71ad865075cdd0041992e6b5f6eb9de4, type: 2}
@@ -2653,7 +2653,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -61}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &697980025
 GameObject:
@@ -6037,8 +6037,9 @@ MonoBehaviour:
   endingPanel: {fileID: 963522515}
   endingPicture: {fileID: 2128361084}
   endingText: {fileID: 691950586}
-  losePicture: {fileID: 8699895414238470440, guid: 5d96a7a86ba8ba34ea6b9307680a6034, type: 3}
+  losePicture: {fileID: 9064980505135779761, guid: 3990fcb857e2272488db1128f546f6a0, type: 3}
   loseText: You were defeated.
+  winText: Thanks to you, everyone can have a nice Halloween!
   gameSceneName: Main
 --- !u!1 &1803271942
 GameObject:
@@ -6858,8 +6859,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Player: Dylan Yujun Wee \nEnemy: Su Mon Htet\nMaps: Le Ting Ng\nUI: Ma
-    Ka Yi Kylie"
+  m_text: 'Player: Dylan Wee Yujun
+
+    Enemy: Su Mon Htet
+
+    Maps: Le Ting Ng
+
+    UI:
+    Ma Ka Yi Kylie'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ede8a16f948108842befeb350d910c5c, type: 2}
   m_sharedMaterial: {fileID: -2768222276582132387, guid: ede8a16f948108842befeb350d910c5c, type: 2}
@@ -7397,7 +7404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 2348572458802879445, guid: 7f4fa778329aef84f8e94436c0635166, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7424,15 +7431,15 @@ RectTransform:
   m_GameObject: {fileID: 2128361083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 963522516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 94}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 43}
+  m_SizeDelta: {x: 2048, y: 1083}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2129037563
 GameObject:
