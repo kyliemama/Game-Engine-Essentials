@@ -13647,6 +13647,7 @@ GameObject:
   - component: {fileID: 338294521}
   - component: {fileID: 338294520}
   - component: {fileID: 338294519}
+  - component: {fileID: 338294522}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -13715,6 +13716,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &338294522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338294518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b022b428f52574bb45dedc4e42b944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeepAcrossScenes
 --- !u!43 &351339253
 Mesh:
   m_ObjectHideFlags: 0
@@ -79078,6 +79091,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4293322105689859643, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2086809548}
     - targetCorrespondingSourceObject: {fileID: 7616432312288051350, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2086809546}
@@ -79099,6 +79115,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864469727e42652448b7e6b9671dc8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBringAlong
+--- !u!1 &2086809547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4293322105689859643, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
+  m_PrefabInstance: {fileID: 2086809544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2086809548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086809547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b022b428f52574bb45dedc4e42b944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeepAcrossScenes
 --- !u!1 &2089317711
 GameObject:
   m_ObjectHideFlags: 0
