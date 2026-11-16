@@ -3195,6 +3195,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 527210893413528423, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 141425820}
+    - target: {fileID: 2845824559392351352, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: hpCandyPrefab
+      value: 
+      objectReference: {fileID: 5043313453883304894, guid: 49b75ec3ba045de4389df911a58b70ea, type: 3}
     - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.944973
@@ -31073,7 +31081,7 @@ PrefabInstance:
     - target: {fileID: 8498554459127483238, guid: decdc6072ba86624fbb5022f5c2c0584, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1538804809989808892, guid: 46e1ba20a32fbaa43bee3bdc069bb580, type: 3}
+      objectReference: {fileID: 141425820}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41085,7 +41093,7 @@ PrefabInstance:
     - target: {fileID: 8498554459127483238, guid: decdc6072ba86624fbb5022f5c2c0584, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1538804809989808892, guid: 46e1ba20a32fbaa43bee3bdc069bb580, type: 3}
+      objectReference: {fileID: 141425820}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44887,10 +44895,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3113477304266313695, guid: d90e8031af1aadc44a8c917db05b8016, type: 3}
-      propertyPath: m_FillMethod
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3243605894824502660, guid: d90e8031af1aadc44a8c917db05b8016, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.564415
@@ -44929,10 +44933,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3243605894824502660, guid: d90e8031af1aadc44a8c917db05b8016, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215451328546031317, guid: d90e8031af1aadc44a8c917db05b8016, type: 3}
-      propertyPath: m_FillMethod
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8091535773944203230, guid: d90e8031af1aadc44a8c917db05b8016, type: 3}
@@ -60377,7 +60377,7 @@ PrefabInstance:
     - target: {fileID: 8498554459127483238, guid: decdc6072ba86624fbb5022f5c2c0584, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1538804809989808892, guid: 46e1ba20a32fbaa43bee3bdc069bb580, type: 3}
+      objectReference: {fileID: 141425820}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -73560,7 +73560,7 @@ PrefabInstance:
     - target: {fileID: 8498554459127483238, guid: decdc6072ba86624fbb5022f5c2c0584, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1538804809989808892, guid: 46e1ba20a32fbaa43bee3bdc069bb580, type: 3}
+      objectReference: {fileID: 141425820}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -79101,6 +79101,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4293322105689859643, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2086809548}
+    - targetCorrespondingSourceObject: {fileID: 4293322105689859643, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2086809559}
     - targetCorrespondingSourceObject: {fileID: 7616432312288051350, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2086809546}
@@ -79140,6 +79143,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeepAcrossScenes
   mainMenuSceneName: MainMenu
+--- !u!114 &2086809559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086809547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa4ae86140cecd5408e13ac616e94606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCandyCollector
+  eatKey: 113
+  healPerCandy: 25
 --- !u!1 &2089317711
 GameObject:
   m_ObjectHideFlags: 0
