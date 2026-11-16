@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] private GameObject witch;
+    [SerializeField] private GameObject finalboss;
     [SerializeField] private Animator chestAnimator;
     [SerializeField] private float lidOpenDelay = 0.4f;
     [SerializeField] private Transform candiesParent;
@@ -45,7 +45,7 @@ public class Explosion : MonoBehaviour
 
     bool IsBossDefeated()
     {
-        return witch == null || !witch.activeInHierarchy;
+        return finalboss == null || !finalboss.activeInHierarchy;
     }
 
     IEnumerator OpenAndExplodeCandies()
