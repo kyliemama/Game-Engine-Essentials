@@ -79,7 +79,7 @@ public class BatProjectile : MonoBehaviour
 
         Debug.Log(
             "BAT HIT PLAYER! Remaining HP: " +
-            health.currentHealth
+            health.CurrentHealth
         );
 
         Destroy(gameObject);

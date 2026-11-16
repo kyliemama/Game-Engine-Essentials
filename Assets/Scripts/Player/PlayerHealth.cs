@@ -23,5 +23,13 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = 0;
             // Die();
         }
-    }   
+    }
+
+    // Restores HP, up to maxHealth. Used by eating candy.
+    public void Heal(int amount)
+    {
+        if (amount <= 0) return;
+
+        currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
+    }
 }
