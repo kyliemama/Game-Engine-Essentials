@@ -13646,10 +13646,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c5efb03afa740b429ebbe22ae8c3fca, type: 3}
+  m_Script: {fileID: 11500000, guid: 22b022b428f52574bb45dedc4e42b944, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneChange
-  targetSceneName: Interior
+  m_EditorClassIdentifier: Assembly-CSharp::KeepAcrossScenes
 --- !u!1 &338294518
 GameObject:
   m_ObjectHideFlags: 0
