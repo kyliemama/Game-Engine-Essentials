@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GhostBossHealth : MonoBehaviour
+public class GhostBossHealth : MonoBehaviour, IDamageable
 {
     [Header("Ghost Health")]
     public int maxHealth = 100;

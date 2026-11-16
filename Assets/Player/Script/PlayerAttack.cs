@@ -101,7 +101,7 @@ public class PlayerAttack : MonoBehaviour
     float lastObservedT;
 
     readonly Collider[] overlapBuffer = new Collider[32];
-    readonly HashSet<Health> alreadyHit = new HashSet<Health>();
+    readonly HashSet<IDamageable> alreadyHit = new HashSet<IDamageable>();
 
     Vector3 lastBoxCenter;
     Quaternion lastBoxRotation;
@@ -365,7 +365,7 @@ public class PlayerAttack : MonoBehaviour
         lastStrikeTime = Time.time;
 
         int count = Physics.OverlapBoxNonAlloc(
-            center, size * 0.5f, overlapBuffer, rotation, hitMask, QueryTriggerInteraction.Ignore);
+            center, size * 0.5f, overlapBuffer, rotation, hitMask, QueryTriggerInteraction.Collide);
 
         DamageOverlaps(count);
     }
@@ -381,15 +381,22 @@ public class PlayerAttack : MonoBehaviour
             // Never hit ourselves
             if (col.transform.IsChildOf(transform)) continue;
 
-            Health health = col.GetComponentInParent<Health>();
-            if (!health || alreadyHit.Contains(health)) continue; // one hit per target per swing
+            // Works with every health script: Health, BatHealth, EnemyHealth, TreeBossHealth, GhostBossHealth
+            IDamageable target = FindDamageable(col);
+            if (target == null || !alreadyHit.Add(target)) continue; // one hit per target per swing
 
-            alreadyHit.Add(health);
-            health.TakeDamage(DamageThisHit);
+            target.TakeDamage(DamageThisHit);
 
             if (logAttacks)
-                Debug.Log($"PlayerAttack: hit {health.name} for {DamageThisHit}");
+                Debug.Log($"PlayerAttack: hit {((Component)target).name} for {DamageThisHit}");
         }
+    }
+
+    /// <summary>The damageable script on this collider or one of its parents (null if none, or already destroyed).</summary>
+    static IDamageable FindDamageable(Collider col)
+    {
+        IDamageable target = col.GetComponentInParent<IDamageable>();
+        return (target as Component) ? target : null;
     }
 
     void GetSlashBox(out Vector3 center, out Quaternion rotation, out Vector3 size)
@@ -447,8 +454,8 @@ public class PlayerAttack : MonoBehaviour
         if (!didHit) return;
         if (hit.collider.transform.IsChildOf(transform)) return;
 
-        Health health = hit.collider.GetComponentInParent<Health>();
-        if (health) health.TakeDamage(DamageThisHit);
+        IDamageable target = FindDamageable(hit.collider);
+        if (target != null) target.TakeDamage(DamageThisHit);
     }
 
     // ------------------------------------------------------------ gizmos

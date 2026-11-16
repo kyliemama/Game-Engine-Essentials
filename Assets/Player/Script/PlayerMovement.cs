@@ -49,6 +49,19 @@ public class PlayerMovement : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         if (!cameraTransform && Camera.main) cameraTransform = Camera.main.transform;
+
+        // Enemies, the HP bar and pickups look for the "Player" tag and a PlayerHealth component.
+        // Add them if they were forgotten, so the game still works (and say so in the Console).
+        if (CompareTag("Untagged"))
+        {
+            gameObject.tag = "Player";
+            Debug.LogWarning($"{name}: was Untagged, set its Tag to 'Player'. Set it in the Inspector to make this permanent.", this);
+        }
+        if (!GetComponentInChildren<PlayerHealth>() && !GetComponentInParent<PlayerHealth>())
+        {
+            gameObject.AddComponent<PlayerHealth>();
+            Debug.LogWarning($"{name}: had no PlayerHealth, added one (100 HP). Add it in the Inspector to make this permanent.", this);
+        }
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;

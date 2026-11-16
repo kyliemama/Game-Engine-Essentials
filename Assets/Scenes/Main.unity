@@ -3187,6 +3187,63 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1001 &61601655
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25.944973
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.999084
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 35.868935
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572161258184649809, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: m_Name
+      value: Minion_Bat
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
 --- !u!1001 &64421075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52735,6 +52792,10 @@ MonoBehaviour:
   rightHinge: {fileID: 1281432789}
   openAngle: 90
   openSpeed: 2
+  leftClosedRot: {x: 0, y: 0, z: 0, w: 0}
+  rightClosedRot: {x: 0, y: 0, z: 0, w: 0}
+  leftOpenRot: {x: 0, y: 0, z: 0, w: 0}
+  rightOpenRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!43 &1282440903
 Mesh:
   m_ObjectHideFlags: 0
@@ -81593,3 +81654,4 @@ SceneRoots:
   - {fileID: 1008329435}
   - {fileID: 338294521}
   - {fileID: 2086809544}
+  - {fileID: 61601655}

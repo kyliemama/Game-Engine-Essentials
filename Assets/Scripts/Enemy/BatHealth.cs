@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class BatHealth : MonoBehaviour
+public class BatHealth : MonoBehaviour, IDamageable
 {
     [Header("Bat Health")]
     public int maxHealth = 50;

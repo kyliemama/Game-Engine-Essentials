@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [Header("Enemy Health")]
     public int maxHealth = 50;

@@ -37,6 +37,10 @@ public class GhostBossAttack : MonoBehaviour
 
     void Update()
     {
+        // Find the Player if it isn't assigned (or was destroyed / replaced).
+        if (player == null)
+            player = PlayerLocator.Find();
+
         if (player == null)
             return;
 

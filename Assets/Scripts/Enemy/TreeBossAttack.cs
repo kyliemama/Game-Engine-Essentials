@@ -30,7 +30,7 @@ public class TreeBossAttack : MonoBehaviour
         if (player == null)
         {
             GameObject playerObject =
-                GameObject.FindGameObjectWithTag("Player");
+                PlayerLocator.Find()?.gameObject;
 
             if (playerObject != null)
             {
@@ -45,6 +45,10 @@ public class TreeBossAttack : MonoBehaviour
 
     void Update()
     {
+        // Find the Player if it isn't assigned (or was destroyed / replaced).
+        if (player == null)
+            player = PlayerLocator.Find();
+
         if (player == null)
             return;
 

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
  
 /// <summary>Put on anything that can be hit (enemies, props, the player).</summary>
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IDamageable
 {
     public int maxHealth = 100;
     public int current;

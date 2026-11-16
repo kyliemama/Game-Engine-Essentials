@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class TreeBossHealth : MonoBehaviour
+public class TreeBossHealth : MonoBehaviour, IDamageable
 {
     [Header("Tree Boss Health")]
     public int maxHealth = 150;
@@ -72,4 +72,4 @@ public class TreeBossHealth : MonoBehaviour
         Destroy(gameObject);
     }
 }
-                                            
+                                            
