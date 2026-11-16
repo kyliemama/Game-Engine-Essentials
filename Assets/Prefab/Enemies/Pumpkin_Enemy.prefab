@@ -911,11 +911,13 @@ MonoBehaviour:
   detectionRange: 6
   attackRange: 1.5
   chaseSpeed: 2
+  turnSpeed: 8
   attackDamage: 10
   attackCooldown: 2
   animator: {fileID: 0}
   fireballPrefab: {fileID: 6722328850313071949, guid: eaa1d115c2ebb02489837b3b71880df6, type: 3}
   fireballSpawnPoint: {fileID: 4787298503306717897}
+  logState: 0
 --- !u!95 &4017049285600194843
 Animator:
   serializedVersion: 7
@@ -984,8 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 208d9ea8f665bd348b6de98814f1b782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CandyDrop
-  hpCandyPrefab: {fileID: 1601990773545381654, guid: b94887e27b5009c44935e03244699619, type: 3}
-  mpCandyPrefab: {fileID: 6271239872834124668, guid: 64663796248697f47830240e8a9df041, type: 3}
+  hpCandyPrefab: {fileID: 5043313453883304894, guid: 49b75ec3ba045de4389df911a58b70ea, type: 3}
   minCandy: 2
   maxCandy: 3
   throwForce: 0.7
