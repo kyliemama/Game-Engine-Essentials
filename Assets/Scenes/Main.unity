@@ -3195,6 +3195,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 527210893413528423, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 141425820}
+    - target: {fileID: 2845824559392351352, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
+      propertyPath: hpCandyPrefab
+      value: 
+      objectReference: {fileID: 5043313453883304894, guid: 49b75ec3ba045de4389df911a58b70ea, type: 3}
     - target: {fileID: 7088217380284954347, guid: 4d7e9c3a86110c84082c6e13fa3c0157, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.944973
@@ -78793,6 +78801,28 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &2068476272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4293322105689859643, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
+  m_PrefabInstance: {fileID: 2086809544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2068476281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068476272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60529987bda807f46b221f7873181062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CandyPickup
+  isHPCandy: 1
+  minHPRecovery: 20
+  maxHPRecovery: 30
+  minMPRecovery: 20
+  maxMPRecovery: 30
 --- !u!43 &2078096242
 Mesh:
   m_ObjectHideFlags: 0
@@ -79107,7 +79137,11 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4293322105689859643, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
       insertIndex: -1
+<<<<<<< Updated upstream
       addedObject: {fileID: 2086809548}
+=======
+      addedObject: {fileID: 2068476281}
+>>>>>>> Stashed changes
     - targetCorrespondingSourceObject: {fileID: 7616432312288051350, guid: 98a46e2ed9670cb4cafcf5ca3e6eba35, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2086809546}
