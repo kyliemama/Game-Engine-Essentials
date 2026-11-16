@@ -67,21 +67,21 @@ public class BatProjectile : MonoBehaviour
         if (hasHit)
             return;
 
-        PlayerHealth health =
+        PlayerHealth playerHealth =
             other.GetComponentInParent<PlayerHealth>();
 
-        if (health == null)
-            return;
+        if (playerHealth != null)
+        {
+            hasHit = true;
 
-        hasHit = true;
+            playerHealth.TakeDamage(damage);
 
-        health.TakeDamage(damage);
+            Debug.Log("Bat hit Player!");
+            Debug.Log("Player received damage: " + damage);
+            Debug.Log("Remaining Player HP: " +
+                      playerHealth.CurrentHealth);
 
-        Debug.Log(
-            "BAT HIT PLAYER! Remaining HP: " +
-            health.CurrentHealth
-        );
-
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }
