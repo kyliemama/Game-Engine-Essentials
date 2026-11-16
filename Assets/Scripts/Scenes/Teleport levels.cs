@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class TeleportLevels : MonoBehaviour
 {
@@ -14,34 +13,42 @@ public class TeleportLevels : MonoBehaviour
     [SerializeField] private GameObject finalBoss;
 
     private int currentFloor = 1;
-    private float lastTeleportTime = -10f;
+    private Transform playerInRange;
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (!other.CompareTag("Player")) return;
+        if (playerInRange == null) return;
 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            TryTeleport();
+        }
+    }
+
+    private void TryTeleport()
+    {
         if (currentFloor == 1 && hatch1To2Destination != null)
         {
             if (!AreEnemiesDefeated(miniboss)) return;
-            lastTeleportTime = Time.time;
             currentFloor = 2;
 
             if (floor2Group != null) floor2Group.SetActive(true);
             if (floor1Group != null) floor1Group.SetActive(false);
             if (staircaseElevator != null) staircaseElevator.CloseHatch1To2();
 
-            MovePlayer(other.transform, hatch1To2Destination);
+            MovePlayer(playerInRange, hatch1To2Destination);
+            playerInRange = null; // Clear reference since player teleported away
         }
         else if (currentFloor == 2 && hatch2To3Destination != null)
         {
             if (!AreEnemiesDefeated(finalBoss)) return;
-            lastTeleportTime = Time.time;
             currentFloor = 3;
 
             if (floor3Group != null) floor3Group.SetActive(true);
             if (floor2Group != null) floor2Group.SetActive(false);
 
-            MovePlayer(other.transform, hatch2To3Destination);
+            MovePlayer(playerInRange, hatch2To3Destination);
+            playerInRange = null; // Clear reference since player teleported away
         }
     }
 
@@ -49,7 +56,6 @@ public class TeleportLevels : MonoBehaviour
     {
         return Enemies == null || !Enemies.activeInHierarchy;
     }
-
 
     private void MovePlayer(Transform player, Transform hatchTarget)
     {
@@ -59,5 +65,21 @@ public class TeleportLevels : MonoBehaviour
         player.position = hatchTarget.position + landingOffset;
 
         if (cc != null) cc.enabled = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = other.transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = null;
+        }
     }
 }
