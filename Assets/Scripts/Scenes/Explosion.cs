@@ -36,7 +36,7 @@ public class Explosion : MonoBehaviour
     {
         if (isOpened || !playerInRange) return;
         if (!IsBossDefeated()) return;
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             isOpened = true;
             StartCoroutine(OpenAndExplodeCandies());
@@ -52,7 +52,7 @@ public class Explosion : MonoBehaviour
     {
         if (chestAnimator != null)
         {
-            chestAnimator.SetTrigger("Witch Defeated");
+            chestAnimator.SetTrigger("FinalBoss Defeated");
             yield return new WaitForSeconds(lidOpenDelay);
         }
 
