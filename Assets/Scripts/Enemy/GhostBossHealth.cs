@@ -9,6 +9,10 @@ public class GhostBossHealth : MonoBehaviour
     public int maxHealth = 100;
     private int currentHealth;
 
+    // Allow other scripts to read the Ghost's HP.
+    public int CurrentHealth => currentHealth;
+    public int MaxHealth => maxHealth;
+
     [Header("Health Bar UI")]
     public Image healthFill;
     public TMP_Text healthText;
@@ -32,7 +36,7 @@ public class GhostBossHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isDead)
+        if (isDead || damage <= 0)
             return;
 
         currentHealth -= damage;
@@ -65,11 +69,12 @@ public class GhostBossHealth : MonoBehaviour
 
     void Die()
     {
+        if (isDead) return;
+
         isDead = true;
 
         Debug.Log("Ghost Mini-Boss defeated!");
 
-        // Spawn blue death effect
         GameObject effect = null;
 
         if (deathEffect != null)
@@ -81,7 +86,6 @@ public class GhostBossHealth : MonoBehaviour
             );
         }
 
-        // Spawn lollipop in the centre of the effect
         Vector3 spawnPosition =
             transform.position + Vector3.up * 1f;
 
@@ -93,7 +97,6 @@ public class GhostBossHealth : MonoBehaviour
                 Quaternion.identity
             );
 
-            // Play magical sound when lollipop appears
             if (lollipopSpawnSound != null)
             {
                 AudioSource.PlayClipAtPoint(
@@ -103,7 +106,6 @@ public class GhostBossHealth : MonoBehaviour
                 );
             }
 
-            // Connect lollipop to the death effect
             LollipopKeyPickup pickup =
                 lollipop.GetComponent<LollipopKeyPickup>();
 
@@ -117,7 +119,6 @@ public class GhostBossHealth : MonoBehaviour
             Debug.LogWarning("Lollipop prefab is not assigned!");
         }
 
-        // Remove Ghost
         Destroy(gameObject);
     }
 }
