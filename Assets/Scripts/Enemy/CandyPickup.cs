@@ -31,14 +31,7 @@ public class CandyPickup : MonoBehaviour
             return;
 
         // Store the candy on the player instead of collecting it here.
-        // The Player prefab may not have a PlayerCandyCollector yet, so add one if it's missing.
         PlayerCandyCollector collector = other.GetComponentInParent<PlayerCandyCollector>();
-        if (collector == null)
-        {
-            PlayerLocator.EnsurePlayerComponents(player.transform);
-            collector = player.GetComponentInParent<PlayerCandyCollector>();
-        }
-
         if (collector != null)
             collector.AddCandy(this);
     }
@@ -65,7 +58,7 @@ public class CandyPickup : MonoBehaviour
             Debug.Log("MP Candy collected! +" + amount + " MP");
         }
 
-        // Remove the entire candy (the trigger is usually a child of the candy model)
-        Destroy(transform.parent != null ? transform.parent.gameObject : gameObject);
+        // Remove the entire candy
+        Destroy(transform.parent.gameObject);
     }
 }
