@@ -1,61 +1,133 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
-// Audio controls only: music, toggle sound and mute.
-// Panel show/hide lives in MenuController.
+// Scene sound controls: sliders, mute buttons and buttons. This is per scene.
+// The sound itself lives in AudioManager, which persists across scenes.
 // Field names match the existing scene references, so keep them.
 public class VolumeController : MonoBehaviour
 {
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider SFXSlider;
-    [SerializeField] AudioSource music;
-    [SerializeField] AudioSource UISound;     // Shared with MenuController.
-    [SerializeField] AudioClip toggleClip;    // Plays on music and mute toggles.
+    [SerializeField] AudioMixer mixer;     // MainMixer asset.
 
-    private void Start()
+    [Header("Mute icons")]
+    [SerializeField] Image musicIcon;      // Image on the music mute button.
+    [SerializeField] Image sfxIcon;        // Image on the SFX mute button.
+    [SerializeField] Sprite normalSprite;  // Speaker with sound.
+    [SerializeField] Sprite muteSprite;    // Speaker with a cross.
+
+    float savedMusicVolume = -1f;
+    float savedSFXVolume = -1f;
+
+    private void OnEnable()
     {
-        // Start each slider at its own source's volume.
-        if (music != null) musicSlider.value = music.volume;
-        if (UISound != null) SFXSlider.value = UISound.volume;
+        // Each time the panel opens, show the volume the mixer already has.
+        // This keeps the sliders matching the main menu after a scene change.
+        musicSlider.SetValueWithoutNotify(GetLinearVolume("MusicVolume"));
+        SFXSlider.SetValueWithoutNotify(GetLinearVolume("SFXVolume"));
     }
 
-    // Play/stop button for background music.
+    private void Update()
+    {
+        // Icons follow the sliders, so dragging to 0 also changes the icon.
+        UpdateIcon(musicIcon, musicSlider);
+        UpdateIcon(sfxIcon, SFXSlider);
+    }
+
+    // Reads a mixer parameter in decibels and returns it as a 0-1 slider value.
+    private float GetLinearVolume(string parameter)
+    {
+        if (mixer == null || !mixer.GetFloat(parameter, out float db)) return 1f;
+        return Mathf.Pow(10f, db / 20f);
+    }
+
+    // Music play/stop button.
     public void OnPlayMusic()
     {
-        PlayToggleSound();
+        if (AudioManager.instance != null) AudioManager.instance.ToggleMusic();
+    }
 
-        if (music == null) return;
+    // Music mute button (On Click). Mutes to 0, or restores the saved volume.
+    public void ToggleMusicMute()
+    {
+        ToggleMute(musicSlider, ref savedMusicVolume);
+    }
 
-        if (music.isPlaying)
-            music.Stop();
-        else
-            music.Play();
+    // SFX mute button (On Click). Mutes to 0, or restores the saved volume.
+    public void ToggleSFXMute()
+    {
+        ToggleMute(SFXSlider, ref savedSFXVolume);
     }
 
     // Hook to the Music slider (On Value Changed).
     public void OnMusicSliderChange()
     {
-        if (music != null) music.volume = musicSlider.value;
+        SetMixerVolume("MusicVolume", musicSlider.value);
     }
 
     // Hook to the SFX slider (On Value Changed).
     public void OnSFXSliderChange()
     {
-        if (UISound != null) UISound.volume = SFXSlider.value;
+        SetMixerVolume("SFXVolume", SFXSlider.value);
     }
 
     // Mute button: pauses or resumes all audio.
     public void OnSoundToggle()
     {
-        PlayToggleSound();
         AudioListener.pause = !AudioListener.pause;
     }
 
-    private void PlayToggleSound()
+    // Button click sound from AudioManager's Click entry. Works in any scene.
+    public void PlayClick()
     {
-        if (UISound != null && toggleClip != null)
+        if (AudioManager.instance != null) AudioManager.instance.PlayClick();
+    }
+
+    // Plays a clip you drag into a button's On Click argument slot.
+    public void PlaySound(AudioClip clip)
+    {
+        if (AudioManager.instance != null) AudioManager.instance.PlayClip(clip);
+    }
+
+    private void ToggleMute(Slider slider, ref float savedVolume)
+    {
+        if (slider == null) return;
+
+        if (IsMuted(slider))
         {
-            UISound.PlayOneShot(toggleClip);
+            // Setting the value fires On Value Changed, so the mixer updates too.
+            slider.value = savedVolume > 0f ? savedVolume : 1f;
         }
+        else
+        {
+            savedVolume = slider.value;
+            slider.value = 0f;
+        }
+    }
+
+    private void UpdateIcon(Image icon, Slider slider)
+    {
+        if (icon == null || slider == null) return;
+
+        Sprite wanted = IsMuted(slider) ? muteSprite : normalSprite;
+        if (wanted != null && icon.sprite != wanted)
+        {
+            icon.sprite = wanted;
+        }
+    }
+
+    private bool IsMuted(Slider slider)
+    {
+        return slider.value <= 0.0001f;
+    }
+
+    private void SetMixerVolume(string parameter, float linear)
+    {
+        if (mixer == null) return;
+
+        // The mixer uses decibels. Clamp to avoid log of zero.
+        float db = Mathf.Log10(Mathf.Max(linear, 0.0001f)) * 20f;
+        mixer.SetFloat(parameter, db);
     }
 }

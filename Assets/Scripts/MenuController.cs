@@ -1,17 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
     [Header("Panels")]
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private GameObject creditsPanel; // Leave empty: the scene has no Credits panel yet.
-
-    [Header("Sound")]
-    [SerializeField] private AudioSource uiSound;     // Same UISound object used by VolumeController.
-    [SerializeField] private AudioClip buttonClip;    // Plays on menu button presses.
+    [SerializeField] private GameObject creditsPanel; // Leave empty to skip the Credits panel.
 
     [Header("Scene")]
     [SerializeField] private string gameSceneName = "SampleScene";
@@ -23,14 +18,12 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
-        PlayButtonSound();
         SceneManager.LoadScene(gameSceneName);
     }
 
     // The main menu stays visible behind the panel.
     public void OpenSettings()
     {
-        PlayButtonSound();
         SetPanel(creditsPanel, false);
         SetPanel(settingsPanel, true);
     }
@@ -38,7 +31,6 @@ public class MenuController : MonoBehaviour
     // The main menu stays visible behind the panel.
     public void OpenCredits()
     {
-        PlayButtonSound();
         SetPanel(settingsPanel, false);
         SetPanel(creditsPanel, true);
     }
@@ -46,7 +38,6 @@ public class MenuController : MonoBehaviour
     // Closes the open Settings or Credits panel and returns to the main menu.
     public void ClosePanel()
     {
-        PlayButtonSound();
         ShowMainMenu();
     }
 
@@ -59,20 +50,11 @@ public class MenuController : MonoBehaviour
 
     public void QuitGame()
     {
-        PlayButtonSound();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
-    }
-
-    private void PlayButtonSound()
-    {
-        if (uiSound != null && buttonClip != null)
-        {
-            uiSound.PlayOneShot(buttonClip);
-        }
     }
 
     private void SetPanel(GameObject panel, bool isVisible)

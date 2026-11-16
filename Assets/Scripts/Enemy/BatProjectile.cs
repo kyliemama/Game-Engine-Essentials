@@ -83,5 +83,13 @@ public class BatProjectile : MonoBehaviour
 
             Destroy(gameObject);
         }
+
+        Debug.Log(
+            "BAT HIT PLAYER! Remaining HP: " +
+            health.CurrentHealth
+        );
+
+        Destroy(gameObject);
+
     }
 }
