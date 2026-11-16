@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class GateOpen : MonoBehaviour
 {
-    public Transform leftHinge;
-    public Transform rightHinge;
-    public float openAngle = 90f;
-    public float openSpeed = 2f;
+    [SerializeField] private Transform leftHinge;
+    [SerializeField] private Transform rightHinge;
+    [SerializeField] private float openAngle = 90f;
+    [SerializeField] private float openSpeed = 2f;
 
-    private Quaternion leftClosedRot;
-    private Quaternion rightClosedRot;
-    private Quaternion leftOpenRot;
-    private Quaternion rightOpenRot;
+    [SerializeField] private Quaternion leftClosedRot;
+    [SerializeField] private Quaternion rightClosedRot;
+    [SerializeField] private Quaternion leftOpenRot;
+    [SerializeField] private Quaternion rightOpenRot;
     private bool isPlayerNearby = false;
 
     void Start()
