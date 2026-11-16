@@ -1,13 +1,11 @@
 using UnityEngine;
 
-// Put on the Player. Touching a candy stores it. Press Q to eat one and restore HP.
+// Put on the Player. Touching a candy adds it to GameManager's count. Press Q to eat one and restore HP.
 public class PlayerCandyCollector : MonoBehaviour
 {
     [Header("Eating")]
     public KeyCode eatKey = KeyCode.Q;
     public int healPerCandy = 25;
-
-    public int CandyCount { get; private set; }
 
     private PlayerHealth health;
 
@@ -26,32 +24,29 @@ public class PlayerCandyCollector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player touched: " + other.name);
-
         CandyPickup candy = other.GetComponentInParent<CandyPickup>();
 
         if (candy != null)
         {
-            Debug.Log("Candy detected!");
             AddCandy(candy);
         }
     }
 
-    // Stores a candy and removes it from the world. Ignores candies already taken.
+    // Stores a candy in GameManager and removes it from the world. Ignores candies already taken.
     public void AddCandy(CandyPickup candy)
     {
         if (candy == null || candy.IsCollected) return;
-
-        CandyCount++;
+        GameManager.Get().AddCandy();
         candy.Collect();
     }
 
     private void EatCandy()
     {
-        if (CandyCount <= 0 || health == null) return;
+        if (health == null) return;
 
-        CandyCount--;
-        health.Heal(healPerCandy);
-        Debug.Log("Ate a candy. HP +" + healPerCandy + ", candies left: " + CandyCount);
+        if (GameManager.Get().EatCandy())
+        {
+            health.Heal(healPerCandy);
+        }
     }
 }

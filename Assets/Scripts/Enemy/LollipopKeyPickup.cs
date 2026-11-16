@@ -13,12 +13,14 @@ public class LollipopKeyPickup : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (collected || !other.CompareTag("Player"))
+        if (collected || !other.transform.root.CompareTag("Player"))
             return;
 
         collected = true;
 
         Debug.Log("Lollipop key collected!");
+
+        GameManager.Get().GiveKey();
 
         if (deathEffect != null)
             Destroy(deathEffect);
