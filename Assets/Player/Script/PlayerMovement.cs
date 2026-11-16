@@ -60,6 +60,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!InventoryUI.IsOpen) Look();
         Move();
+        UpdateWalkSound();
+    }
+
+    // Loops the "Walk" sound while the character is moving on the ground.
+    void UpdateWalkSound()
+    {
+        if (AudioManager.instance == null) return;
+
+        bool walking = cc != null && cc.isGrounded && planarVelocity.sqrMagnitude > 0.1f;
+        AudioManager.instance.SetLoop(walking ? "Walk" : "");
     }
 
     void Look()
