@@ -12,7 +12,7 @@ public class SceneChange : MonoBehaviour
         if (!playerInRange) return;
         if (Input.GetKeyDown(KeyCode.C))
         {
-            SceneManager.LoadScene(targetSceneName);
+            SceneManager.LoadSceneAsync(targetSceneName);
         }
     }
 
