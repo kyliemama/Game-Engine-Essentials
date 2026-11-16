@@ -17,10 +17,4 @@ public class SceneController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public void LoadScene(string sceneName)
-    {
-        // Load the specified scene
-        SceneManager.LoadScene(sceneName);
-    }
 }
