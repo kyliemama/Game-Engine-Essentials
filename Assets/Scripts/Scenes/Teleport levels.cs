@@ -46,7 +46,7 @@ public class TeleportLevels : MonoBehaviour
 
             if (floor3Group != null) floor3Group.SetActive(true);
             if (floor2Group != null) floor2Group.SetActive(false);
-            if (staircaseElevator != null) staircaseElevator.CloseHatch2To3(); // <-- Add this line
+            if (staircaseElevator != null) staircaseElevator.CloseHatch2To3();
 
             MovePlayer(playerInRange, hatch2To3Destination);
             playerInRange = null;

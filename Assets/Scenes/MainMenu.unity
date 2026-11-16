@@ -3169,7 +3169,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Halloween
+  m_text: Trick or Treat
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ede8a16f948108842befeb350d910c5c, type: 2}
   m_sharedMaterial: {fileID: -2768222276582132387, guid: ede8a16f948108842befeb350d910c5c, type: 2}
@@ -3196,8 +3196,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5354,7 +5354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Halloween
+  m_text: Trick or Treat
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ede8a16f948108842befeb350d910c5c, type: 2}
   m_sharedMaterial: {fileID: -2768222276582132387, guid: ede8a16f948108842befeb350d910c5c, type: 2}
@@ -5381,8 +5381,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 95
-  m_fontSizeBase: 95
+  m_fontSize: 65
+  m_fontSizeBase: 65
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
