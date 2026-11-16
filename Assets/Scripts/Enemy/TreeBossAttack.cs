@@ -92,11 +92,7 @@ public class TreeBossAttack : MonoBehaviour
                 ? Camera.main.transform.position
                 : firePoint.position;
 
-            AudioSource.PlayClipAtPoint(
-                attackSound,
-                soundPosition,
-                attackSoundVolume
-            );
+            if (AudioManager.instance != null) AudioManager.instance.PlayClip(attackSound, attackSoundVolume);
 
             Debug.Log("Tree Boss attack sound played!");
         }

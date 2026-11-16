@@ -10,6 +10,7 @@ public class PlayerHealthUI : MonoBehaviour
     [SerializeField] string playerTag = "Player";   // kept for older scenes; PlayerLocator also checks this tag
 
     PlayerHealth playerHealth;
+
     float nextSearchTime;
 
     void Update()

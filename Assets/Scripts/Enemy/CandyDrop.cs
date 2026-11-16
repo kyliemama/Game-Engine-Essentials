@@ -31,11 +31,7 @@ public class CandyDrop : MonoBehaviour
         // Play candy pop sound
         if (candyPopSound != null)
         {
-            AudioSource.PlayClipAtPoint(
-                candyPopSound,
-                transform.position,
-                popVolume
-            );
+            if (AudioManager.instance != null) AudioManager.instance.PlayClip(candyPopSound, popVolume);
         }
 
         int candyAmount = Random.Range(

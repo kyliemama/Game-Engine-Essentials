@@ -123,11 +123,7 @@ public class GhostBossAttack : MonoBehaviour
         // Play attack sound immediately before shooting
         if (attackSound != null)
         {
-            AudioSource.PlayClipAtPoint(
-                attackSound,
-                transform.position,
-                attackSoundVolume
-            );
+            if (AudioManager.instance != null) AudioManager.instance.PlayClip(attackSound, attackSoundVolume);
         }
 
         Vector3 targetPosition = player.position + Vector3.up * 0.5f;

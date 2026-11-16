@@ -219,11 +219,7 @@ public class BatAI : MonoBehaviour
                 ? Camera.main.transform.position
                 : firePoint.position;
 
-            AudioSource.PlayClipAtPoint(
-                attackSound,
-                soundPosition,
-                attackSoundVolume
-            );
+            if (AudioManager.instance != null) AudioManager.instance.PlayClip(attackSound, attackSoundVolume);
 
             Debug.Log("Bat attack sound played!");
         }
