@@ -138,9 +138,6 @@ public class PlayerAttack : MonoBehaviour
 
         if (InventoryUI.IsOpen) return;
 
-        // No attacks while the settings panel is open.
-        if (PersistentHUD.SettingsOpen) return;
-
         bool pressed = allowHoldToAttack ? Input.GetMouseButton(0) : Input.GetMouseButtonDown(0);
         if (pressed && CanStartAttack())
         {
@@ -176,9 +173,6 @@ public class PlayerAttack : MonoBehaviour
 
     void StartAttack()
     {
-        // Attack sound from AudioManager's "Attack" entry.
-        if (AudioManager.instance != null) AudioManager.instance.PlaySFX("Attack");
-
         UpdateCombo();
         BeginSwing();
 
