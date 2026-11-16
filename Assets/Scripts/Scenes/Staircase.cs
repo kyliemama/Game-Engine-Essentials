@@ -9,7 +9,7 @@ public class Staircase : MonoBehaviour
     [SerializeField] private GameObject level1Enemy;
     [SerializeField] private GameObject hatch1To2;
     [SerializeField] private Transform level1Staircase;
-    [SerializeField] private float level1Position = 2.62f;
+    [SerializeField] private float level1Position = 2.23f;
     [SerializeField] private float dropSpeed = 8f;
     [SerializeField] private GameObject level2Enemy;
     [SerializeField] private GameObject hatch2To3;
