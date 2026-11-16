@@ -51,6 +51,11 @@ public class BatAI : MonoBehaviour
         }
     }
 
+    void OnDisable()
+    {
+        EnemyMusic.Track(this, false);
+    }
+
     void Update()
     {
         if (player == null)
@@ -60,6 +65,8 @@ public class BatAI : MonoBehaviour
             transform.position,
             player.position
         );
+
+        EnemyMusic.Track(this, distance <= detectionRange);
 
         if (distance > detectionRange)
             return;

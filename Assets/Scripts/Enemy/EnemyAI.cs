@@ -53,6 +53,11 @@ public class EnemyAI : MonoBehaviour
         agent.speed = patrolSpeed;
     }
 
+    void OnDisable()
+    {
+        EnemyMusic.Track(this, false);
+    }
+
     void Update()
     {
         if (player == null)
@@ -68,6 +73,8 @@ public class EnemyAI : MonoBehaviour
             transform.position,
             player.position
         );
+
+        EnemyMusic.Track(this, distanceToPlayer <= detectionRange);
 
         float playerDistanceFromCentre = Vector3.Distance(
             new Vector3(player.position.x, 0f, player.position.z),

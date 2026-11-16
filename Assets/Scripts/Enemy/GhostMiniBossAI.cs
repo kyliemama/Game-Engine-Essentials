@@ -23,6 +23,11 @@ public class GhostMiniBossAI : MonoBehaviour
         startPosition = transform.position;
     }
 
+    void OnDisable()
+    {
+        EnemyMusic.Track(this, false);
+    }
+
     void Update()
     {
         if (player == null)
@@ -32,6 +37,8 @@ public class GhostMiniBossAI : MonoBehaviour
             transform.position,
             player.position
         );
+
+        EnemyMusic.Track(this, distance <= detectionRange);
 
         // Move towards the Player when detected.
         if (distance <= detectionRange &&
