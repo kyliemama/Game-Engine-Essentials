@@ -1,5 +1,7 @@
 
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class TreeBossHealth : MonoBehaviour
 {
@@ -12,16 +14,22 @@ public class TreeBossHealth : MonoBehaviour
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
 
+    [Header("Health Bar UI")]
+    public Image healthFill;
+    public TMP_Text healthText;
+
     void Start()
     {
         currentHealth = maxHealth;
+
+        UpdateHealthBar();
 
         Debug.Log("Tree Boss HP: " + currentHealth);
     }
 
     public void TakeDamage(int damage)
     {
-        if (isDead)
+        if (isDead || damage <= 0)
             return;
 
         currentHealth -= damage;
@@ -29,9 +37,26 @@ public class TreeBossHealth : MonoBehaviour
 
         Debug.Log("Tree Boss HP: " + currentHealth);
 
+        UpdateHealthBar();
+
         if (currentHealth <= 0)
         {
             Die();
+        }
+    }
+
+    void UpdateHealthBar()
+    {
+        if (healthFill != null)
+        {
+            healthFill.fillAmount =
+                (float)currentHealth / maxHealth;
+        }
+
+        if (healthText != null)
+        {
+            healthText.text =
+                currentHealth + " / " + maxHealth;
         }
     }
 
@@ -47,3 +72,4 @@ public class TreeBossHealth : MonoBehaviour
         Destroy(gameObject);
     }
 }
+                                            

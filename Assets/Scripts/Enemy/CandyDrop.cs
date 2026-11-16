@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class CandyDrop : MonoBehaviour
 {
-    [Header("Candy Prefabs")]
+    [Header("HP Candy Prefab")]
     public GameObject hpCandyPrefab;
-    public GameObject mpCandyPrefab;
 
     [Header("Drop Amount")]
     public int minCandy = 2;
@@ -17,14 +16,15 @@ public class CandyDrop : MonoBehaviour
 
     [Header("Drop Sound")]
     public AudioClip candyPopSound;
+
     [Range(0f, 1f)]
     public float popVolume = 0.7f;
 
     public void DropCandies()
     {
-        if (hpCandyPrefab == null || mpCandyPrefab == null)
+        if (hpCandyPrefab == null)
         {
-            Debug.LogError("Please assign both candy prefabs!");
+            Debug.LogError("HP Candy prefab is not assigned!");
             return;
         }
 
@@ -38,27 +38,18 @@ public class CandyDrop : MonoBehaviour
             );
         }
 
-        int candyAmount = Random.Range(minCandy, maxCandy + 1);
+        int candyAmount = Random.Range(
+            minCandy,
+            maxCandy + 1
+        );
 
         for (int i = 0; i < candyAmount; i++)
         {
-            GameObject selectedCandy;
-
-            // Guarantee one HP and one MP candy
-            if (i == 0)
-                selectedCandy = hpCandyPrefab;
-            else if (i == 1)
-                selectedCandy = mpCandyPrefab;
-            else
-                selectedCandy = Random.value < 0.5f
-                    ? hpCandyPrefab
-                    : mpCandyPrefab;
-
             Vector3 spawnPosition =
                 transform.position + Vector3.up;
 
             GameObject candy = Instantiate(
-                selectedCandy,
+                hpCandyPrefab,
                 spawnPosition,
                 Random.rotation
             );
@@ -80,6 +71,6 @@ public class CandyDrop : MonoBehaviour
             }
         }
 
-        Debug.Log("Pumpkin dropped " + candyAmount + " candies!");
+        Debug.Log("Enemy dropped " + candyAmount + " HP candies!");
     }
 }

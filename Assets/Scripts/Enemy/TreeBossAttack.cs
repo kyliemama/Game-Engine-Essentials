@@ -11,12 +11,17 @@ public class TreeBossAttack : MonoBehaviour
     public Transform firePoint;
 
     [Header("Attack Settings")]
-    public float attackRange = 12f;
+    public float attackRange = 10f;
     public float attackCooldown = 1.5f;
-    public int attackDamage = 20;
+    public int attackDamage = 15;
 
     [Header("Projectile Settings")]
     public float projectileSpeed = 12f;
+
+    [Header("Attack Sound")]
+    public AudioClip attackSound;
+    [Range(0f, 1f)]
+    public float attackSoundVolume = 0.7f;
 
     private float nextAttackTime;
 
@@ -31,6 +36,10 @@ public class TreeBossAttack : MonoBehaviour
             {
                 player = playerObject.transform;
             }
+            else
+            {
+                Debug.LogError("Player with tag 'Player' was not found!");
+            }
         }
     }
 
@@ -44,7 +53,6 @@ public class TreeBossAttack : MonoBehaviour
             player.position
         );
 
-        // Only attack when Player is within range.
         if (distance <= attackRange)
         {
             ShootProjectile();
@@ -63,6 +71,26 @@ public class TreeBossAttack : MonoBehaviour
         }
 
         nextAttackTime = Time.time + attackCooldown;
+
+        // Play fireball sound near the camera.
+        if (attackSound != null)
+        {
+            Vector3 soundPosition = Camera.main != null
+                ? Camera.main.transform.position
+                : firePoint.position;
+
+            AudioSource.PlayClipAtPoint(
+                attackSound,
+                soundPosition,
+                attackSoundVolume
+            );
+
+            Debug.Log("Tree Boss attack sound played!");
+        }
+        else
+        {
+            Debug.LogWarning("Tree Boss attack sound is not assigned!");
+        }
 
         Vector3 targetPosition =
             player.position + Vector3.up * 0.5f;
