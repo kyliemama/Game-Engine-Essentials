@@ -6039,7 +6039,7 @@ MonoBehaviour:
   endingText: {fileID: 691950586}
   losePicture: {fileID: 8699895414238470440, guid: 5d96a7a86ba8ba34ea6b9307680a6034, type: 3}
   loseText: You were defeated.
-  gameSceneName: Enemy
+  gameSceneName: Main
 --- !u!1 &1803271942
 GameObject:
   m_ObjectHideFlags: 0
